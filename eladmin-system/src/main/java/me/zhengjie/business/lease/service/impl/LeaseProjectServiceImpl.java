@@ -15,27 +15,27 @@
 */
 package me.zhengjie.business.lease.service.impl;
 
-import me.zhengjie.business.lease.domain.LeaseProject;
-import me.zhengjie.utils.*;
 import lombok.RequiredArgsConstructor;
+import me.zhengjie.business.lease.domain.LeaseProject;
 import me.zhengjie.business.lease.repository.LeaseProjectRepository;
+import me.zhengjie.business.lease.service.vo.LeaseProjectSelectVO;
 import me.zhengjie.business.lease.service.LeaseProjectService;
 import me.zhengjie.business.lease.service.dto.LeaseProjectDto;
 import me.zhengjie.business.lease.service.dto.LeaseProjectQueryCriteria;
 import me.zhengjie.business.lease.service.mapstruct.LeaseProjectMapper;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import me.zhengjie.utils.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
-import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
 * @website https://docs.auauz.net
@@ -117,5 +117,30 @@ public class LeaseProjectServiceImpl implements LeaseProjectService {
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);
+    }
+
+    @Override
+    public List findSelectDataAll() {
+        List<LeaseProjectSelectVO> list = new ArrayList<>();
+        for (Object o : leaseProjectRepository.findLeaseProjectSelectVOAll()) {
+            Object[] objects = (Object[]) o;
+            list.add(new LeaseProjectSelectVO((Long) objects[0], (String) objects[1]));
+        }
+        return list;
+    }
+
+    @Override
+    public List<LeaseProject> findAll() {
+        return leaseProjectRepository.findAll();
+    }
+
+    @Override
+    public void saveAll(List<LeaseProject> leaseProjectList) {
+        leaseProjectRepository.saveAll(leaseProjectList);
+    }
+
+    @Override
+    public List<LeaseProject> findByStatus(String status) {
+        return leaseProjectRepository.findByStatus(status);
     }
 }

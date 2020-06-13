@@ -13,24 +13,20 @@
 *  See the License for the specific language governing permissions and
 *  limitations under the License.
 */
-package me.zhengjie.business.lease.repository;
+package me.zhengjie.business.lease.service.mapstruct;
 
-import me.zhengjie.business.lease.domain.LeaseProject;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
+import me.zhengjie.base.BaseMapper;
+import me.zhengjie.business.lease.domain.LeaseProjectDetail;
+import me.zhengjie.business.lease.service.dto.LeaseProjectDetailDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 /**
 * @website https://docs.auauz.net
 * @author imxushuai
-* @date 2020-05-26
+* @date 2020-06-06
 **/
-public interface LeaseProjectRepository extends JpaRepository<LeaseProject, Long>, JpaSpecificationExecutor<LeaseProject> {
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface LeaseProjectDetailMapper extends BaseMapper<LeaseProjectDetailDto, LeaseProjectDetail> {
 
-    @Query("SELECT lp.id, lp.name FROM LeaseProject lp")
-    List findLeaseProjectSelectVOAll();
-
-    List<LeaseProject> findByStatus(String status);
 }

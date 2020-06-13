@@ -15,22 +15,20 @@
 */
 package me.zhengjie.business.lease.repository;
 
-import me.zhengjie.business.lease.domain.LeaseProject;
+import me.zhengjie.business.lease.domain.LeaseProjectDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 /**
 * @website https://docs.auauz.net
 * @author imxushuai
-* @date 2020-05-26
+* @date 2020-06-06
 **/
-public interface LeaseProjectRepository extends JpaRepository<LeaseProject, Long>, JpaSpecificationExecutor<LeaseProject> {
+public interface LeaseProjectDetailRepository extends JpaRepository<LeaseProjectDetail, Long>, JpaSpecificationExecutor<LeaseProjectDetail> {
 
-    @Query("SELECT lp.id, lp.name FROM LeaseProject lp")
-    List findLeaseProjectSelectVOAll();
+    List<LeaseProjectDetail> findByLeaseProjectId(Long projectId);
 
-    List<LeaseProject> findByStatus(String status);
+    List<LeaseProjectDetail> findByStatus(String status);
 }

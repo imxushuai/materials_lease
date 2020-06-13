@@ -15,23 +15,23 @@
 */
 package me.zhengjie.business.lease.service;
 
-import me.zhengjie.business.lease.domain.LeaseProject;
-import me.zhengjie.business.lease.service.dto.LeaseProjectDto;
-import me.zhengjie.business.lease.service.dto.LeaseProjectQueryCriteria;
+import me.zhengjie.business.lease.domain.LeaseMaterials;
+import me.zhengjie.business.lease.service.dto.LeaseMaterialsDto;
+import me.zhengjie.business.lease.service.dto.LeaseMaterialsQueryCriteria;
+import me.zhengjie.business.lease.service.vo.LeaseMaterialsSelectVO;
 import org.springframework.data.domain.Pageable;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 
 /**
 * @website https://docs.auauz.net
 * @description 服务接口
 * @author imxushuai
-* @date 2020-05-26
+* @date 2020-06-06
 **/
-public interface LeaseProjectService {
+public interface LeaseMaterialsService {
 
     /**
     * 查询数据分页
@@ -39,34 +39,34 @@ public interface LeaseProjectService {
     * @param pageable 分页参数
     * @return Map<String,Object>
     */
-    Map<String,Object> queryAll(LeaseProjectQueryCriteria criteria, Pageable pageable);
+    Map<String,Object> queryAll(LeaseMaterialsQueryCriteria criteria, Pageable pageable);
 
     /**
     * 查询所有数据不分页
     * @param criteria 条件参数
-    * @return List<LeaseProjectDto>
+    * @return List<LeaseMaterialsDto>
     */
-    List<LeaseProjectDto> queryAll(LeaseProjectQueryCriteria criteria);
+    List<LeaseMaterialsDto> queryAll(LeaseMaterialsQueryCriteria criteria);
 
     /**
      * 根据ID查询
      * @param id ID
-     * @return LeaseProjectDto
+     * @return LeaseMaterialsDto
      */
-    LeaseProjectDto findById(Long id);
+    LeaseMaterialsDto findById(Long id);
 
     /**
     * 创建
     * @param resources /
-    * @return LeaseProjectDto
+    * @return LeaseMaterialsDto
     */
-    LeaseProjectDto create(LeaseProject resources);
+    LeaseMaterialsDto create(LeaseMaterials resources);
 
     /**
     * 编辑
     * @param resources /
     */
-    void update(LeaseProject resources);
+    void update(LeaseMaterials resources);
 
     /**
     * 多选删除
@@ -80,13 +80,9 @@ public interface LeaseProjectService {
     * @param response /
     * @throws IOException /
     */
-    void download(List<LeaseProjectDto> all, HttpServletResponse response) throws IOException;
+    void download(List<LeaseMaterialsDto> all, HttpServletResponse response) throws IOException;
 
-    List findSelectDataAll();
+    List<LeaseMaterialsSelectVO> findSelectDataAll();
 
-    List<LeaseProject> findAll();
-
-    void saveAll(List<LeaseProject> leaseProjectList);
-
-    List<LeaseProject> findByStatus(String status);
+    List<LeaseMaterials> findAll();
 }

@@ -84,4 +84,11 @@ public class LeaseProjectController {
         leaseProjectService.deleteAll(ids);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @Log("获取所有项目(下拉选择框使用)")
+    @ApiOperation("获取所有项目(下拉选择框使用)")
+    @GetMapping("findSelectData")
+    public ResponseEntity<Object> findAll() {
+        return new ResponseEntity<>(leaseProjectService.findSelectDataAll(), HttpStatus.OK);
+    }
 }
